@@ -1,50 +1,6 @@
-//this is the Die class
-
-class Die //models one single dice cube
-{
-    var xloc; 
-    var yloc; 
-    var val;
-    
-    constructor(x, y, val) //constructor
-    {
-        xloc = x;
-        yloc = y;
-        this.val=val;
-    }
-      
-    show(){
-        square(xloc,yloc, 150);
-        strokeWeight(18);
-        
-        if(val%2==1)
-          point(xloc+75,yloc+75);
-        if(val!=1) {
-          point(xloc+25,yloc+25);
-          point(xloc+125,yloc+125);
-        }
-        if(val>3){
-          point(xloc+25,yloc+125);
-          point(xloc+125,yloc+25);
-        }
-        if(val==6){
-          point(xloc+75,yloc+25);
-          point(xloc+75,yloc+125);
-        }
-        
-        strokeWeight(1);
-    }
-}
-
-
-
-
-
-
-
 //this is the runner class
-//ArrayList<Die> dice = new ArrayList<Die>();
-var dice = [];
+
+let dice = [];
 
 function setup() {
    noLoop();
@@ -53,11 +9,12 @@ function setup() {
 
 function draw() {
   
-  background(#A6CEDE);
+ background(166, 206, 222);
   
   //clears ArrayList
-  if(dice.size()>0)
-    dice.clear();
+  if(dice.length>0) {
+    let dice = [];
+  }
   
   //total variables
   var top=0;
@@ -65,22 +22,22 @@ function draw() {
   
   //creates Die objects and adds them into ArrayList dice, adds values to total variables
   
-  for(var i=0;i<5;i++){
-    var x = (int)(Math.random()*6)+1;
+  for(let i=0;i<5;i++){
+    let x = (int)(Math.random()*6)+1;
     dice.push(new Die(20+170*i,430,x));
     bottom+=x;
   }
   
-  for(var i=0;i<5;i++){
-    var x = (int)(Math.random()*6)+1;
+  for(let i=0;i<5;i++){
+    let x = (int)(Math.random()*6)+1;
      dice.push(new Die(20+170*i,20,x));
      top+=x;
   }
   
   //displays dice
   
-  for(var i=0;i<dice.size();i++)
-    dice.get(i).show();
+  for(let i=0;i<dice.length;i++)
+    dice[i].show();
     
   //sets up text properties
   textSize(32);
@@ -101,4 +58,45 @@ function draw() {
 
 function mousePressed() {
    redraw();
+}
+
+
+
+
+//this is the Die class
+
+class Die //models one single dice cube
+{
+    /*var xloc; 
+    var yloc; 
+    var val;*/
+    
+    constructor(x, y, val) //constructor
+    {
+        this.xloc = x;
+        this.yloc = y;
+        this.val=val;
+    }
+      
+    show(){
+        square(this.xloc,this.yloc, 150);
+        strokeWeight(18);
+        
+        if(this.val%2==1)
+          point(this.xloc+75,this.yloc+75);
+        if(this.val!=1) {
+          point(this.xloc+25,this.yloc+25);
+          point(this.xloc+125,this.yloc+125);
+        }
+        if(this.val>3){
+          point(this.xloc+25,this.yloc+125);
+          point(this.xloc+125,this.yloc+25);
+        }
+        if(this.val==6){
+          point(this.xloc+75,this.yloc+25);
+          point(this.xloc+75,this.yloc+125);
+        }
+        
+        strokeWeight(1);
+    }
 }
